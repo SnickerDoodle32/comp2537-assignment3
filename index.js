@@ -136,7 +136,7 @@ app.get('/admin', async (req, res) => {
         return res.redirect('/login');
     }
     if (!isAdmin(req)) {
-        return res.status(403).render('404', { loggedIn: true });
+        return res.status(403).render('403', { loggedIn: true });
     }
 
     const users = await usersCollection.find().toArray();
