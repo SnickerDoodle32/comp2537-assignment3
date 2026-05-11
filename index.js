@@ -22,7 +22,7 @@ async function connectDB() {
 }
 
 const userSchema = Joi.object({
-    username: Joi.string().alphanum().min(3).max(30).required(),
+    username: Joi.string().email({ tlds: { allow: false } }).required(),
     password: Joi.string().min(6).required(),
     user_type: Joi.string().valid('user', 'admin').default('user')
 });
