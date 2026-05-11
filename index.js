@@ -22,7 +22,7 @@ async function connectDB() {
 }
 
 const userSchema = Joi.object({
-    username: Joi.string().email({ tlds: { allow: false } }).required(),
+    email: Joi.string().email({ tlds: { allow: false } }).required(),
     password: Joi.string().min(6).required(),
     user_type: Joi.string().valid('user', 'admin').default('user')
 });
@@ -70,17 +70,17 @@ app.post('/signup', async (req, res) => {
         return res.render('signup', { error: error.details[0].message, loggedIn: req.session.userId ? true : false });
     }
 
-    const { username, password, user_type } = value;
+    const { email, password, user_type } = value;
 
     try {
-        const existingUser = await usersCollection.findOne({ username });
+        const existingUser = await usersCollection.findOne({ email });
         if (existingUser) {
-            return res.render('signup', { error: 'Username already exists', loggedIn: req.session.userId ? true : false });
+            return res.render('signup', { error: 'Email already exists', loggedIn: req.session.userId ? true : false });
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
         await usersCollection.insertOne({
-            username,
+            email,
             password: hashedPassword,
             user_type: user_type || 'user'
         });
@@ -96,21 +96,21 @@ app.get('/login', (req, res) => {
 });
 
 app.post('/login', async (req, res) => {
-    const { username, password } = req.body;
+    const { email, password } = req.body;
 
     try {
-        const user = await usersCollection.findOne({ username });
+        const user = await usersCollection.findOne({ email });
         if (!user) {
-            return res.render('login', { error: 'Invalid username or password', loggedIn: req.session.userId ? true : false });
+            return res.render('login', { error: 'Invalid email or password', loggedIn: req.session.userId ? true : false });
         }
 
         const match = await bcrypt.compare(password, user.password);
         if (!match) {
-            return res.render('login', { error: 'Invalid username or password', loggedIn: req.session.userId ? true : false });
+            return res.render('login', { error: 'Invalid email or password', loggedIn: req.session.userId ? true : false });
         }
 
         req.session.userId = user._id.toString();
-        req.session.username = user.username;
+        req.session.email = user.email;
         req.session.userType = user.user_type;
 
         res.redirect('/');
@@ -128,7 +128,7 @@ app.get('/members', (req, res) => {
     if (!isLoggedIn(req)) {
         return res.redirect('/login');
     }
-    res.render('members', { username: req.session.username, loggedIn: req.session.userId ? true : false });
+    res.render('members', { email: req.session.email, loggedIn: req.session.userId ? true : false });
 });
 
 app.get('/admin', async (req, res) => {
