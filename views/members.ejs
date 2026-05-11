@@ -1,0 +1,46 @@
+<%- include('templates/header') %>
+
+<div class="row">
+    <div class="col-12">
+        <h1 class="text-center mb-4">Members Area</h1>
+        <p class="text-center">Welcome, <%= username %>!</p>
+    </div>
+</div>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col">
+        <div class="card h-100">
+            <div class="card-img-top d-flex align-items-center justify-content-center" style="height: 200px; background-color: #dc3545;">
+                <span class="text-white fs-1">RED</span>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Red</h5>
+                <p class="card-text">This is a red image.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card h-100">
+            <div class="card-img-top d-flex align-items-center justify-content-center" style="height: 200px; background-color: #28a745;">
+                <span class="text-white fs-1">GREEN</span>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Green</h5>
+                <p class="card-text">This is a green image.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card h-100">
+            <div class="card-img-top d-flex align-items-center justify-content-center" style="height: 200px; background-color: #0d6efd;">
+                <span class="text-white fs-1">BLUE</span>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Blue</h5>
+                <p class="card-text">This is a blue image.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('templates/footer') %>

@@ -1,0 +1,24 @@
+<%- include('templates/header') %>
+
+<div class="row">
+    <div class="col-12">
+        <% if (loggedIn) { %>
+            <div class="text-center">
+                <h1 class="mb-4">Hello, <%= userType === 'admin' ? 'Admin' : 'Member' %>!</h1>
+                <p class="lead">Welcome to the members area.</p>
+                <a class="btn btn-primary" href="/members">Go to Members Page</a>
+            </div>
+        <% } else { %>
+            <div class="text-center">
+                <h1 class="mb-4">Welcome to COMP 2537</h1>
+                <p class="lead">Please sign up or login to continue.</p>
+                <div class="mt-4">
+                    <a class="btn btn-primary" href="/signup">Sign Up</a>
+                    <a class="btn btn-outline-primary" href="/login">Login</a>
+                </div>
+            </div>
+        <% } %>
+    </div>
+</div>
+
+<%- include('templates/footer') %>

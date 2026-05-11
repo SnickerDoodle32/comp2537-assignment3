@@ -1,0 +1,21 @@
+<div class="card mb-3">
+    <div class="card-body">
+        <h5 class="card-title"><%= user.username %></h5>
+        <p class="card-text">
+            <strong>Type:</strong> <%= user.user_type %>
+        </p>
+        <% if (user._id.toString() !== currentUserId) { %>
+            <% if (user.user_type === 'user') { %>
+                <form method="POST" action="/admin/promote" class="d-inline">
+                    <input type="hidden" name="userId" value="<%= user._id %>">
+                    <button type="submit" class="btn btn-success btn-sm">Promote</button>
+                </form>
+            <% } else { %>
+                <form method="POST" action="/admin/demote" class="d-inline">
+                    <input type="hidden" name="userId" value="<%= user._id %>">
+                    <button type="submit" class="btn btn-warning btn-sm">Demote</button>
+                </form>
+            <% } %>
+        <% } %>
+    </div>
+</div>
