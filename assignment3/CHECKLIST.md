@@ -23,11 +23,11 @@ Self-graded Assignment 3 Checklist
 [x]  The website has an appealing, professional and consistent look.
 
 Total Grade:
-  /70 (Total grade out of 70, first item is 10 marks, 2 marks each for next 4 items, 7 marks each for next 6 items and 10 marks for last item)
+  70/70 (Total grade out of 70, first item is 10 marks, 2 marks each for next 4 items, 7 marks each for next 6 items and 10 marks for last item)
 
 *Note items are considered *fully* complete (marked with an x inside the box: [x]), OR incomplete (box is left empty: [ ])
 
 ---
 
-Assignment submitted by: [Your Name]
+Assignment submitted by: Shaan Puar
 Set: 1B
